@@ -1,0 +1,168 @@
+<style>/* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    /* Set a style for all buttons */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+
+    /* Center the image and position the close button */
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+        position: relative;
+    }
+
+    img.avatar {
+        width: 40%;
+        border-radius: 50%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        padding-top: 60px;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button (x) */
+    .close {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: #000;
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+
+    /* Add Zoom Animation */
+    .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s
+    }
+
+    @-webkit-keyframes animatezoom {
+        from {-webkit-transform: scale(0)}
+        to {-webkit-transform: scale(1)}
+    }
+
+    @keyframes animatezoom {
+        from {transform: scale(0)}
+        to {transform: scale(1)}
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+        span.psw {
+            display: block;
+            float: none;
+        }
+        .cancelbtn {
+            width: 100%;
+        }
+    }
+    .add-product {
+        /* position: absolute; */
+        float: right;
+        top: 0;
+        right: 0;
+        background: #5dafdb;
+        color: #fff;
+        padding: 8px;
+        border: 0px;</style><div class="bg-blue animated fadeInRightBig" ng-class="{'blur-bg':(editcat === true)}"><div class="pageLoader" ng-show="loader === true"></div><div class="header"><h2>Notification</h2><a ng-click="logout();" class="chat-icon" style="margin-right: 20px;"><i class="fa fa-power-off"></i></a><!--        <a ui-sref="mainLayout.about" class="info-icon"><i class="fa fa-info-circle"></i></a>
+                    <a ui-sref="mainLayout.users" class="chat-icon"><i class="fa fa-twitch"></i></a>--></div><div class="page-wrapper" style="background: #178ccb !important"><div class="form-group"><i class="input-icon"></i> <button class="add-product" onclick="document.getElementById('id01').style.display = 'block'">Add New Notification</button></div></div><table border="0" class="injury-table" cellspacing="0"><thead><tr><td>Title</td><td style="width:90px;">ACTION</td></tr></thead><tbody id="category-body"><tr ng-repeat="product in products"><td>{{product.title}}</td><td><a ng-click="delete(product)" ng-model="product"><i class="fa fa-trash-o"></i></a></td></tr></tbody></table></div><div id="id01" class="modal"><form class="modal-content animate"><div class="imgcontainer"><span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span></div><div class="container"><label><b>Notification</b></label><input type="text" placeholder="Enter Your Notitfication" ng-model="product.title" required><div class="container" style="background-color:#f1f1f1"><button type="submit" style="width: 30%" ng-click="save(product)">Save</button> <button type="button" onclick="document.getElementById('id01').style.display = 'none'" style="width: 16%; height: 42px;" class="cancelbtn">Cancel</button></div></div></form></div><div class="overlay" ng-show="deletecat === true" ng-click="deletecat = false"></div><div class="modal-box" ng-show="deletecat === true"><div class="pageLoader" ng-show="loader === true"></div><!--    <h3>Delete Faq</h3>--><form><div class="form-group"><input type="hidden" ng-model="new_product.id" required placeholder="Question"><h1>Are Your Delete This Notification</h1></div><button class="upload-btn" ng-click="DeleteFaq(new_product)">Delete</button><!--     <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>--></form></div><!--    <script>
+
+
+        var save = function(){
+             doUpload();
+        };
+
+
+
+
+        doUpload = function () {
+            var file = $("#ingredient_file")[0].files[0];
+
+
+            var that = this;
+
+            var formData = new FormData();
+
+            formData.append("title", $("#title").val());
+
+            $.ajax({
+                type: "POST",
+                url: "http://medicalratios.net/Menas_health_Api/public/rest-api/v1/add/notification",
+                success: function (data) {
+                    location.reload();
+                    // your callback here
+                },
+                error: function (error) {
+                    // handle error
+                    location.reload();
+                },
+                async: true,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                timeout: 60000
+            });
+        };
+
+    </script>-->

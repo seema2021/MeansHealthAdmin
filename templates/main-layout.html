@@ -1,0 +1,4 @@
+<div class="sidebar" ng-class="{'open':(menuopen === true)}" ng-init="menuopen = false"><div class="sidebar-opener" ng-show="menuopen === false" ng-click="menuopen = true"><i class="fa fa-bars"></i></div><div class="main-menu-heading" ng-click="menuopen = false">MAIN MENU <i class="fa fa-bars"></i></div><ul><li ng-repeat="menu in mainMenu" ng-class="{active: $state.current.name === menu.value}"><a ui-sref="{{menu.value}}"><i ng-class="menu.icon"></i>{{menu.label}}</a></li></ul><!--    <div class="private-menu-heading">PRIMARY MENU </div>
+    <ul>
+        <li class="border-top" ng-repeat="pmenu in privateMenu" ng-class="{active: $state.current.name === pmenu.value}"><a ui-sref="{{pmenu.value}}">{{pmenu.label}}</a></li>
+    </ul>--></div><div ui-view></div>
